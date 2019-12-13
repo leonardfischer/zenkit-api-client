@@ -5,6 +5,7 @@ namespace idoit\zenkit;
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\GuzzleException;
+use JsonMapper;
 use Psr\Http\Message\ResponseInterface;
 
 class API
@@ -20,11 +21,17 @@ class API
     private $client;
 
     /**
+     * @var JsonMapper
+     */
+    protected $mapper;
+
+    /**
      * Client constructor.
      * @param string $apiKey
      */
     public function __construct(string $apiKey)
     {
+        $this->mapper = new JsonMapper();
         $this->client = new Client([
             'base_uri' => self::URL,
             'headers' => [
