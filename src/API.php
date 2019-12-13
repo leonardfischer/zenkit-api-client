@@ -1,6 +1,6 @@
 <?php
 
-namespace synetics\zenkit;
+namespace idoit\zenkit;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;

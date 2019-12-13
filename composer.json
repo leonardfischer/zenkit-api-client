@@ -1,5 +1,5 @@
 {
-  "name": "synetics/zenkit-api-client",
+  "name": "idoit/zenkit-api-client",
   "type": "library",
   "description": "A PHP API client library for Zenkit.",
   "keywords": [
@@ -19,11 +19,12 @@
   "support": {},
   "require": {
     "php": ">=7.0",
-    "guzzlehttp/guzzle": "^6.5"
+    "guzzlehttp/guzzle": "^6.5",
+    "netresearch/jsonmapper": "^1.6"
   },
   "autoload": {
     "psr-4": {
-      "synetics\\zenkit\\": "src/"
+      "idoit\\zenkit\\": "src/"
     }
   }
 }

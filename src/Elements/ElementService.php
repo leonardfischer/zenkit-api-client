@@ -1,14 +1,14 @@
 <?php
 
-namespace synetics\zenkit\Elements;
+namespace idoit\zenkit\Elements;
 
 use GuzzleHttp\Exception\GuzzleException;
-use synetics\zenkit\API;
+use idoit\zenkit\API;
 use Psr\Http\Message\ResponseInterface;
 
 /**
  * Class ElementService
- * @package synetics\zenkit\Elements
+ * @package idoit\zenkit\Elements
  */
 class ElementService extends API
 {

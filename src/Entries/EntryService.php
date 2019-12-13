@@ -1,14 +1,14 @@
 <?php
 
-namespace synetics\zenkit\Entries;
+namespace idoit\zenkit\Entries;
 
 use GuzzleHttp\Exception\GuzzleException;
-use synetics\zenkit\API;
+use idoit\zenkit\API;
 use Psr\Http\Message\ResponseInterface;
 
 /**
  * Class EntryService
- * @package synetics\zenkit\Entries
+ * @package idoit\zenkit\Entries
  */
 class EntryService extends API
 {

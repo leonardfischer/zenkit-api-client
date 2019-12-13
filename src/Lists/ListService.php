@@ -1,14 +1,14 @@
 <?php
 
-namespace synetics\zenkit\Lists;
+namespace idoit\zenkit\Lists;
 
 use GuzzleHttp\Exception\GuzzleException;
-use synetics\zenkit\API;
+use idoit\zenkit\API;
 use Psr\Http\Message\ResponseInterface;
 
 /**
  * Class ListService
- * @package synetics\zenkit\Lists
+ * @package idoit\zenkit\Lists
  */
 class ListService extends API
 {
