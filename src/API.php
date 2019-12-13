@@ -12,7 +12,7 @@ class API
     /**
      * Base API URL for zenkit.
      */
-    public const URL = 'https://zenkit.com/api/v1/';
+    const URL = 'https://zenkit.com/api/v1/';
 
     /**
      * @var ClientInterface

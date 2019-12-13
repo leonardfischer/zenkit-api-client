@@ -26,35 +26,35 @@ class EntryService extends API
     /**
      * @todo
      */
-    private function createEntry(): void
+    private function createEntry()
     {
     }
 
     /**
      * @todo
      */
-    private function deprecateEntries(): void
+    private function deprecateEntries()
     {
     }
 
     /**
      * @todo
      */
-    private function deleteEntry(): void
+    private function deleteEntry()
     {
     }
 
     /**
      * @todo
      */
-    private function updateChecklists(): void
+    private function updateChecklists()
     {
     }
 
     /**
      * @todo
      */
-    private function searchEntriesGlobal(): void
+    private function searchEntriesGlobal()
     {
     }
 
@@ -84,42 +84,42 @@ class EntryService extends API
     /**
      * @todo
      */
-    private function getEntriesFromFilter(): void
+    private function getEntriesFromFilter()
     {
     }
 
     /**
      * @todo
      */
-    private function reorderEntry(): void
+    private function reorderEntry()
     {
     }
 
     /**
      * @todo
      */
-    private function restoreEntry(): void
+    private function restoreEntry()
     {
     }
 
     /**
      * @todo
      */
-    private function updateEntry(): void
+    private function updateEntry()
     {
     }
 
     /**
      * @todo
      */
-    private function updateEntryField(): void
+    private function updateEntryField()
     {
     }
 
     /**
      * @todo
      */
-    private function synchronizeEntriesWithWatermark(): void
+    private function synchronizeEntriesWithWatermark()
     {
     }
 }

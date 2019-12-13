@@ -25,42 +25,42 @@ class ListService extends API
     /**
      * @todo
      */
-    private function getUpdatedAtOfResources(): void
+    private function getUpdatedAtOfResources()
     {
     }
 
     /**
      * @todo
      */
-    private function getUsersForList(): void
+    private function getUsersForList()
     {
     }
 
     /**
      * @todo
      */
-    private function getListsWithoutWorkspaceAccess(): void
+    private function getListsWithoutWorkspaceAccess()
     {
     }
 
     /**
      * @todo
      */
-    private function setMostRecentList(): void
+    private function setMostRecentList()
     {
     }
 
     /**
      * @todo
      */
-    private function editListProperties(): void
+    private function editListProperties()
     {
     }
 
     /**
      * @todo
      */
-    private function deprecateList(): void
+    private function deprecateList()
     {
     }
 }
