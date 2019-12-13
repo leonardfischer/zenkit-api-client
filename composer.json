@@ -1,0 +1,29 @@
+{
+  "name": "synetics/zenkit-api-client",
+  "type": "library",
+  "description": "A PHP API client library for Zenkit.",
+  "keywords": [
+    "API",
+    "Zenkit"
+  ],
+  "homepage": "https://github.com/leonardfischer/zenkit-api-client",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Leonard Fischer",
+      "email": "lfischer@i-doit.com",
+      "homepage": "https://www.i-doit.com",
+      "role": "Developer"
+    }
+  ],
+  "support": {},
+  "require": {
+    "php": ">=7.2",
+    "guzzlehttp/guzzle": "^6.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "synetics\\zenkit\\": "src/"
+    }
+  }
+}
