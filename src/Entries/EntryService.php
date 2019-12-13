@@ -5,6 +5,8 @@ namespace idoit\zenkit\Entries;
 use GuzzleHttp\Exception\GuzzleException;
 use idoit\zenkit\API;
 use idoit\zenkit\BadResponseException;
+use idoit\zenkit\Lists\ListCollection;
+use idoit\zenkit\Lists\ListItem;
 use JsonMapper;
 use JsonMapper_Exception;
 use Psr\Http\Message\ResponseInterface;
@@ -18,17 +20,19 @@ class EntryService extends API
     /**
      * @param $listAllId
      * @param $listEntryAllId
-     * @return Entry
+     * @return EntryItem
      * @throws GuzzleException
      * @throws JsonMapper_Exception
      * @throws BadResponseException
      */
-    public function getEntry($listAllId, $listEntryAllId): Entry
+    public function getEntry($listAllId, $listEntryAllId): EntryItem
     {
-        $mapper = new JsonMapper();
         $response = $this->request("lists/{$listAllId}/entries/{$listEntryAllId}");
 
-        return $mapper->map(json_decode($response->getBody()->getContents(), false), new Entry());
+        return $this->mapper->map(
+            json_decode($response->getBody()->getContents(), false),
+            new EntryItem()
+        );
     }
 
     /**
@@ -69,10 +73,12 @@ class EntryService extends API
     /**
      * @param string $listShortId
      * @param array $parameters
-     * @return ResponseInterface
+     * @return ListCollection
+     * @throws BadResponseException
      * @throws GuzzleException
+     * @throws JsonMapper_Exception
      */
-    public function getEntriesForListView(string $listShortId, array $parameters): ResponseInterface
+    public function getEntriesForListView(string $listShortId, array $parameters): ListCollection
     {
         /**
          * Example for parameters:
@@ -86,7 +92,12 @@ class EntryService extends API
          *    "taskStyle": false
          * ]
          */
-        return $this->request("lists/{$listShortId}/entries/filter/list", 'post', $parameters);
+        $response = $this->request("lists/{$listShortId}/entries/filter/list", 'post', $parameters);
+
+        return $this->mapper->map(
+            json_decode($response->getBody()->getContents(), false),
+            new ListCollection()
+        );
     }
 
     /**
