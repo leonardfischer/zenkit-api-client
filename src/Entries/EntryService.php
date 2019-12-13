@@ -4,6 +4,9 @@ namespace idoit\zenkit\Entries;
 
 use GuzzleHttp\Exception\GuzzleException;
 use idoit\zenkit\API;
+use idoit\zenkit\BadResponseException;
+use JsonMapper;
+use JsonMapper_Exception;
 use Psr\Http\Message\ResponseInterface;
 
 /**
@@ -13,14 +16,19 @@ use Psr\Http\Message\ResponseInterface;
 class EntryService extends API
 {
     /**
-     * @param int|string $listAllId
-     * @param int|string $listEntryAllId
-     * @return ResponseInterface
+     * @param $listAllId
+     * @param $listEntryAllId
+     * @return Entry
      * @throws GuzzleException
+     * @throws JsonMapper_Exception
+     * @throws BadResponseException
      */
-    public function getEntry($listAllId, $listEntryAllId): ResponseInterface
+    public function getEntry($listAllId, $listEntryAllId): Entry
     {
-        return $this->request("lists/{$listAllId}/entries/{$listEntryAllId}");
+        $mapper = new JsonMapper();
+        $response = $this->request("lists/{$listAllId}/entries/{$listEntryAllId}");
+
+        return $mapper->map(json_decode($response->getBody()->getContents(), false), new Entry());
     }
 
     /**

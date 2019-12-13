@@ -37,17 +37,19 @@ class API
 
     /**
      * @param string $uri
-     * @param string $method
-     * @param array $parameters
+     * @param string|null $method
+     * @param array|null $parameters
      * @return ResponseInterface
+     * @throws BadResponseException
      * @throws GuzzleException
      */
     public function request(string $uri, string $method = null, array $parameters = null): ResponseInterface
     {
-        $response = $this->client->request($method ?: 'get', $uri, $parameters);
+        $response = $this->client->request($method ?: 'get', $uri, (array)$parameters);
+        $responseStatus = $response->getStatusCode();
 
-        if ($response->getStatusCode() !== 200) {
-            // Do something :(
+        if ($responseStatus < 200 || $responseStatus > 299) {
+            throw new BadResponseException('The request did not answer with a 2xx status code.', $response->getStatusCode());
         }
 
         return $response;
