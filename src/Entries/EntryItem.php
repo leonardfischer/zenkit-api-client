@@ -6,7 +6,7 @@ namespace idoit\zenkit\Entries;
  * Class Entry
  * @package idoit\zenkit\Entries
  */
-class Entry implements \JsonSerializable
+class EntryItem implements \JsonSerializable
 {
     /**
      * @var int
