@@ -1,3 +1,9 @@
+# Don't commit any 'example' code from index.php
 index.php
+
+# Don't commit PHPStorm project files
+.idea
+
+# Don't commit composer specific files
 composer.phar
 /vendor/
