@@ -6,7 +6,6 @@ use GuzzleHttp\Exception\GuzzleException;
 use idoit\zenkit\API;
 use idoit\zenkit\BadResponseException;
 use idoit\zenkit\Elements\ElementItem;
-use idoit\zenkit\Lists\ListCollection;
 use JsonMapper_Exception;
 
 /**
@@ -107,12 +106,12 @@ class EntryService extends API
     /**
      * @param string $listShortId
      * @param array $parameters
-     * @return object|ListCollection
+     * @return object|EntryCollection
      * @throws BadResponseException
      * @throws GuzzleException
      * @throws JsonMapper_Exception
      */
-    public function getEntriesForListView(string $listShortId, array $parameters)
+    public function getEntriesForListView(string $listShortId, array $parameters = null)
     {
         /**
          * Example for parameters:
@@ -134,14 +133,41 @@ class EntryService extends API
             return $rawData;
         }
 
-        return $this->mapper->map($rawData, new ListCollection());
+        return $this->mapper->map($rawData, new EntryCollection());
     }
 
     /**
-     * @todo
+     * @param string $listShortId
+     * @param array $parameters
+     * @return object|EntryItem[]
+     * @throws BadResponseException
+     * @throws GuzzleException
+     * @throws JsonMapper_Exception
      */
-    private function getEntriesFromFilter()
+    public function getEntriesFromFilter(string $listShortId, array $parameters = null)
     {
+        /**
+         * Example for parameters:
+         * [
+         *    "filter": {},
+         *    "groupByElementId": 0,
+         *    "limit": 0,
+         *    "skip": 0,
+         *    "exclude": [],
+         *    "allowDeprecated": false,
+         *    "taskStyle": false
+         * ]
+         */
+        var_dump(json_encode($parameters, JSON_PRETTY_PRINT));
+        $response = $this->request("lists/{$listShortId}/entries/filter", 'post', $parameters);
+
+        $rawData = json_decode($response->getBody()->getContents(), false);
+
+        if ($this->raw) {
+            return $rawData;
+        }
+
+        return $this->mapper->mapArray($rawData, [], EntryItem::class);
     }
 
     /**

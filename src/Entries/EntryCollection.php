@@ -1,14 +1,14 @@
 <?php
 
-namespace idoit\zenkit\Lists;
+namespace idoit\zenkit\Entries;
 
 use JsonMapper;
 
 /**
- * Class Entry
+ * Class EntryCollection
  * @package idoit\zenkit\Entries
  */
-class ListCollection implements \JsonSerializable
+class EntryCollection implements \JsonSerializable
 {
     /**
      * @var array
@@ -18,7 +18,7 @@ class ListCollection implements \JsonSerializable
     /**
      * @var array
      */
-    public $listEntries;
+    public $entries;
 
     /**
      * @param array $entries
@@ -26,7 +26,7 @@ class ListCollection implements \JsonSerializable
      */
     public function setListEntries(array $entries)
     {
-        $this->listEntries = (new JsonMapper())->mapArray($entries, [], ListItem::class);
+        $this->entries = (new JsonMapper())->mapArray($entries, [], EntryItem::class);
     }
 
     /**
