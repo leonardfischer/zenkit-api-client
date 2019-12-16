@@ -24,12 +24,62 @@ class ListItem implements \JsonSerializable
     public $uuid;
 
     /**
+     * @var string
+     */
+    public $name;
+
+    /**
+     * @var null|string
+     */
+    public $itemName;
+
+    /**
+     * @var bool
+     */
+    public $isBuilding;
+
+    /**
+     * @var bool
+     */
+    public $isMigrating;
+
+    /**
+     * @var string
+     */
+    public $sortOrder;
+
+    /**
+     * @var null|string
+     */
+    public $formulaTSortOrder;
+
+    /**
+     * @var null|string
+     */
+    public $listFilePolicy;
+
+    /**
+     * @var string
+     */
+    public $originProvider;
+
+    /**
+     * @var array
+     */
+    public $originData;
+
+    /**
+     * @var int
+     */
+    public $defaultViewModus;
+
+    /**
      * @var \DateTime
      */
     public $created_at;
 
     /**
-     * @var null|\DateTime
+     * @var \DateTime
      */
     public $updated_at;
 
@@ -39,55 +89,34 @@ class ListItem implements \JsonSerializable
     public $deprecated_at;
 
     /**
-     * @var int
+     * @var \DateTime
      */
-    public $created_by;
+    public $origin_created_at;
+
+    /**
+     * @var null|\DateTime
+     */
+    public $origin_updated_at;
+
+    /**
+     * @var null|\DateTime
+     */
+    public $origin_deprecated_at;
 
     /**
      * @var int
      */
-    public $updated_by;
+    public $workspaceId;
 
     /**
      * @var null|int
      */
-    public $deprecated_by;
-
-    /**
-     * @var null|int
-     */
-    public $displayString;
-
-    /**
-     * @var string
-     */
-    public $sortOrder;
+    public $backgroundId;
 
     /**
      * @var int
      */
-    public $listId;
-
-    /**
-     * @var int
-     */
-    public $comment_count;
-
-    /**
-     * @var array
-     */
-    public $checklists;
-
-    /**
-     * @var string
-     */
-    public $created_by_displayname;
-
-    /**
-     * @var string
-     */
-    public $updated_by_displayname;
-
+    public $visibility;
 
     /**
      * @return array

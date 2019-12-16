@@ -4,6 +4,7 @@ namespace idoit\zenkit\Lists;
 
 use GuzzleHttp\Exception\GuzzleException;
 use idoit\zenkit\API;
+use idoit\zenkit\BadResponseException;
 use Psr\Http\Message\ResponseInterface;
 
 /**
@@ -16,6 +17,7 @@ class ListService extends API
      * @param string $listShortId
      * @return ResponseInterface
      * @throws GuzzleException
+     * @throws BadResponseException
      */
     public function getList(string $listShortId): ResponseInterface
     {
@@ -39,8 +41,9 @@ class ListService extends API
     /**
      * @todo
      */
-    private function getListsWithoutWorkspaceAccess()
+    public function getListsWithoutWorkspaceAccess()
     {
+        return $this->request('users/me/lists-without-workspace-access');
     }
 
     /**
