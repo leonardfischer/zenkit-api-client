@@ -5,7 +5,6 @@ namespace idoit\zenkit\Lists;
 use GuzzleHttp\Exception\GuzzleException;
 use idoit\zenkit\API;
 use idoit\zenkit\BadResponseException;
-use Psr\Http\Message\ResponseInterface;
 
 /**
  * Class ListService
@@ -15,13 +14,22 @@ class ListService extends API
 {
     /**
      * @param string $listShortId
-     * @return ResponseInterface
-     * @throws GuzzleException
+     * @return object|ListItem
      * @throws BadResponseException
+     * @throws GuzzleException
+     * @throws \JsonMapper_Exception
      */
-    public function getList(string $listShortId): ResponseInterface
+    public function getList(string $listShortId)
     {
-        return $this->request("lists/{$listShortId}");
+        $response = $this->request("lists/{$listShortId}");
+
+        $rawData = json_decode($response->getBody()->getContents(), false);
+
+        if ($this->raw) {
+            return $rawData;
+        }
+
+        return $this->mapper->map($rawData, new ListItem());
     }
 
     /**
