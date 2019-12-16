@@ -31,7 +31,7 @@ class ElementItem implements \JsonSerializable
     /**
      * @var null|string
      */
-    public $description;
+    public $displayName;
 
     /**
      * @var array
@@ -46,12 +46,27 @@ class ElementItem implements \JsonSerializable
     /**
      * @var bool
      */
+    public $blocked;
+
+    /**
+     * @var bool
+     */
     public $isPrimary;
+
+    /**
+     * @var bool
+     */
+    public $isAutoCreated;
 
     /**
      * @var int int
      */
     public $sortOrder;
+
+    /**
+     * @var bool
+     */
+    public $visible;
 
     /**
      * @var \DateTime
@@ -77,26 +92,6 @@ class ElementItem implements \JsonSerializable
      * @var int
      */
     public $listId;
-
-    /**
-     * @var bool
-     */
-    public $visibleInPublicList;
-
-    /**
-     * @var bool
-     */
-    public $isAutoCreated;
-
-    /**
-     * @var bool
-     */
-    public $visible;
-
-    /**
-     * @var null|string
-     */
-    public $displayName;
 
     /**
      * @return array
