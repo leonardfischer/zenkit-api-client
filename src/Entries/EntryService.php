@@ -44,7 +44,7 @@ class EntryService extends API
     /**
      * @param $listAllId
      * @param $listEntryAllId
-     * @return object|ListCollection
+     * @return object|EntryItem
      * @throws GuzzleException
      * @throws JsonMapper_Exception
      * @throws BadResponseException
