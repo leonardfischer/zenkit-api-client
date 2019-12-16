@@ -13,10 +13,23 @@ use idoit\zenkit\BadResponseException;
 class WorkspaceService extends API
 {
     /**
-     * @todo
+     * @param int|string $workspaceAllId
+     * @return object|WorkspaceItem
+     * @throws BadResponseException
+     * @throws GuzzleException
+     * @throws \JsonMapper_Exception
      */
-    private function getWorkspace()
+    public function getWorkspace($workspaceAllId)
     {
+        $response = $this->request("workspaces/{$workspaceAllId}");
+
+        $rawData = json_decode($response->getBody()->getContents(), false);
+
+        if ($this->raw) {
+            return $rawData;
+        }
+
+        return $this->mapper->map($rawData, new WorkspaceItem());
     }
 
     /**
