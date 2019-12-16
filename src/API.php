@@ -8,6 +8,10 @@ use GuzzleHttp\Exception\GuzzleException;
 use JsonMapper;
 use Psr\Http\Message\ResponseInterface;
 
+/**
+ * Class API
+ * @package idoit\zenkit
+ */
 class API
 {
     /**
@@ -24,6 +28,12 @@ class API
      * @var JsonMapper
      */
     protected $mapper;
+
+    /**
+     * Should the client output raw data?
+     * @var bool
+     */
+    protected $raw = false;
 
     /**
      * Client constructor.
@@ -43,6 +53,33 @@ class API
     }
 
     /**
+     * Removes - and _ and makes the next letter uppercase.
+     * Copied from `JsonMapper->getCamelCaseName()`.
+     *
+     * @param string $name Property name
+     * @return string CamelCasedVariableName
+     */
+    public static function getCamelCaseName($name): string
+    {
+        return str_replace(' ', '', ucwords(str_replace(['_', '-'], ' ', $name)));
+    }
+
+    /**
+     * Define if you'd like raw output (not mapped to objects).
+     *
+     * @param bool $rawOutput
+     * @return $this
+     */
+    public function outputRawData(bool $rawOutput): self
+    {
+        $this->raw = $rawOutput;
+
+        return $this;
+    }
+
+    /**
+     * Global 'request' method to the Zenkit API endpoint.
+     *
      * @param string $uri
      * @param string|null $method
      * @param array|null $parameters

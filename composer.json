@@ -19,6 +19,7 @@
   "support": {},
   "require": {
     "php": ">=7.0",
+    "ext-json": "*",
     "guzzlehttp/guzzle": "^6.5",
     "netresearch/jsonmapper": "^1.6"
   },

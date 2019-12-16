@@ -4,6 +4,7 @@ namespace idoit\zenkit\Elements;
 
 use GuzzleHttp\Exception\GuzzleException;
 use idoit\zenkit\API;
+use idoit\zenkit\BadResponseException;
 use Psr\Http\Message\ResponseInterface;
 
 /**
@@ -13,10 +14,12 @@ use Psr\Http\Message\ResponseInterface;
 class ElementService extends API
 {
     /**
-     * @param $listId
+     * @param int $listId
      * @param array $parameters
      * @return ResponseInterface
      * @throws GuzzleException
+     * @throws BadResponseException
+     * @todo Use JsonMapper to map responses.
      */
     public function addElementToList(int $listId, array $parameters): ResponseInterface
     {
@@ -33,21 +36,33 @@ class ElementService extends API
     }
 
     /**
-     * @param int|string $listAllId
-     * @return ResponseInterface
+     * @param $listAllId
+     * @return ElementItem[]
      * @throws GuzzleException
+     * @throws \JsonMapper_Exception
+     * @throws BadResponseException
      */
-    public function getElementsInList($listAllId): ResponseInterface
+    public function getElementsInList($listAllId): array
     {
-        return $this->request("lists/{$listAllId}/elements");
+        $response = $this->request("lists/{$listAllId}/elements");
+
+        $rawData = json_decode($response->getBody()->getContents(), false);
+
+        if ($this->raw) {
+            return $rawData;
+        }
+
+        return $this->mapper->mapArray($rawData, [], ElementItem::class);
     }
 
     /**
-     * @param int|string $listAllId
-     * @param int|string $elementAllId
+     * @param $listAllId
+     * @param $elementAllId
      * @param array $parameters
      * @return ResponseInterface
      * @throws GuzzleException
+     * @throws BadResponseException
+     * @todo Use JsonMapper to map responses.
      */
     public function reorderKanban($listAllId, $elementAllId, array $parameters): ResponseInterface
     {
@@ -67,6 +82,8 @@ class ElementService extends API
      * @param array $parameters
      * @return ResponseInterface
      * @throws GuzzleException
+     * @throws BadResponseException
+     * @todo Use JsonMapper to map responses.
      */
     public function updateElementInList(int $listId, int $elementId, array $parameters): ResponseInterface
     {
