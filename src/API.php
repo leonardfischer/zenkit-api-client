@@ -36,12 +36,18 @@ class API
     protected $raw = false;
 
     /**
-     * Client constructor.
+     * API constructor.
      * @param string $apiKey
+     * @param \LoggerInterface|null $logger
      */
-    public function __construct(string $apiKey)
+    public function __construct(string $apiKey, \LoggerInterface $logger = null)
     {
         $this->mapper = new JsonMapper();
+
+        if ($logger !== null) {
+            $this->mapper->setLogger($logger);
+        }
+
         $this->client = new Client([
             'base_uri' => self::URL,
             'headers' => [

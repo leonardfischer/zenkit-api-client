@@ -16,6 +16,9 @@
       "role": "Developer"
     }
   ],
+  "suggest": {
+    "monolog/monolog": "For logging API requests and responses and also the mapping process."
+  },
   "support": {},
   "require": {
     "php": ">=7.0",
