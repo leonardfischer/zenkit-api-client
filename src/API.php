@@ -5,8 +5,12 @@ namespace idoit\zenkit;
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\GuzzleException;
-use JsonMapper;
+use idoit\zenkit\Elements\ElementService;
+use idoit\zenkit\Entries\EntryService;
+use idoit\zenkit\Lists\ListService;
+use idoit\zenkit\Workspaces\WorkspaceService;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Class API
@@ -25,29 +29,11 @@ class API
     private $client;
 
     /**
-     * @var JsonMapper
-     */
-    protected $mapper;
-
-    /**
-     * Should the client output raw data?
-     * @var bool
-     */
-    protected $raw = false;
-
-    /**
      * API constructor.
      * @param string $apiKey
-     * @param \LoggerInterface|null $logger
      */
-    public function __construct(string $apiKey, \LoggerInterface $logger = null)
+    public function __construct(string $apiKey)
     {
-        $this->mapper = new JsonMapper();
-
-        if ($logger !== null) {
-            $this->mapper->setLogger($logger);
-        }
-
         $this->client = new Client([
             'base_uri' => self::URL,
             'headers' => [
@@ -71,19 +57,6 @@ class API
     }
 
     /**
-     * Define if you'd like raw output (not mapped to objects).
-     *
-     * @param bool $rawOutput
-     * @return $this
-     */
-    public function outputRawData(bool $rawOutput): self
-    {
-        $this->raw = $rawOutput;
-
-        return $this;
-    }
-
-    /**
      * Global 'request' method to the Zenkit API endpoint.
      *
      * @param string $uri
@@ -103,5 +76,45 @@ class API
         }
 
         return $response;
+    }
+
+    /**
+     * @param bool|null $raw
+     * @param LoggerInterface|null $logger
+     * @return ElementService
+     */
+    public function getElementService(bool $raw = null, LoggerInterface $logger = null): ElementService
+    {
+        return new ElementService($this, (bool)$raw, $logger);
+    }
+
+    /**
+     * @param bool|null $raw
+     * @param LoggerInterface|null $logger
+     * @return EntryService
+     */
+    public function getEntryService(bool $raw = null, LoggerInterface $logger = null): EntryService
+    {
+        return new EntryService($this, (bool)$raw, $logger);
+    }
+
+    /**
+     * @param bool|null $raw
+     * @param LoggerInterface|null $logger
+     * @return ListService
+     */
+    public function getListService(bool $raw = null, LoggerInterface $logger = null): ListService
+    {
+        return new ListService($this, (bool)$raw, $logger);
+    }
+
+    /**
+     * @param bool|null $raw
+     * @param LoggerInterface|null $logger
+     * @return WorkspaceService
+     */
+    public function getWorkspaceService(bool $raw = null, LoggerInterface $logger = null): WorkspaceService
+    {
+        return new WorkspaceService($this, (bool)$raw, $logger);
     }
 }
