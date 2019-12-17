@@ -5,7 +5,6 @@ namespace idoit\zenkit\Elements;
 use GuzzleHttp\Exception\GuzzleException;
 use idoit\zenkit\API;
 use idoit\zenkit\BadResponseException;
-use Psr\Http\Message\ResponseInterface;
 
 /**
  * Class ElementService

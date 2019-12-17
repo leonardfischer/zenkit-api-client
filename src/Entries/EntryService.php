@@ -6,7 +6,6 @@ use GuzzleHttp\Exception\GuzzleException;
 use idoit\zenkit\API;
 use idoit\zenkit\BadResponseException;
 use idoit\zenkit\Elements\ElementItem;
-use JsonMapper;
 use JsonMapper_Exception;
 
 /**
@@ -169,6 +168,10 @@ class EntryService extends API
 
         $result = [];
         $entryItem = new EntryItem($this->elementConfiguration);
+
+        if ($this->elementConfiguration !== null) {
+            $this->mapper->undefinedPropertyHandler = [$entryItem, 'setUndefinedProperty'];
+        }
 
         foreach ($rawData as $entry) {
             // We don't use `mapArray` because we need EntryItem instances with the element configuration.

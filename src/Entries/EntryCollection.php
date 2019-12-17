@@ -47,11 +47,16 @@ class EntryCollection implements \JsonSerializable
      */
     public function setListEntries(array $entries)
     {
+        $mapper = new JsonMapper();
         $entryItem = new EntryItem($this->elementConfiguration);
+
+        if ($this->elementConfiguration) {
+            $mapper->undefinedPropertyHandler = [$entryItem, 'setUndefinedProperty'];
+        }
 
         foreach ($entries as $entry) {
             // We don't use `mapArray` because we need EntryItem instances with the element configuration.
-            $this->entries[] = (new JsonMapper())->map($entry, clone $entryItem);
+            $this->entries[] = $mapper->map($entry, clone $entryItem);
         }
     }
 
