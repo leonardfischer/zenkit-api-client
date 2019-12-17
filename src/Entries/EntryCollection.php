@@ -2,7 +2,10 @@
 
 namespace idoit\zenkit\Entries;
 
+use idoit\zenkit\Elements\ElementItem;
 use JsonMapper;
+use ReflectionClass;
+use ReflectionProperty;
 
 /**
  * Class EntryCollection
@@ -21,19 +24,50 @@ class EntryCollection implements \JsonSerializable
     public $entries;
 
     /**
+     * @var ElementItem[]
+     */
+    private $elementConfiguration;
+
+    /**
+     * EntryCollection constructor.
+     * @param ElementItem[] $elementConfiguration
+     */
+    public function __construct(array $elementConfiguration = null)
+    {
+        if (is_array($elementConfiguration)) {
+            $this->elementConfiguration = $elementConfiguration;
+        }
+    }
+
+    /**
+     * This method gets called by the JsonMapper in order to fill 'listEntries'.
+     *
      * @param array $entries
      * @throws \JsonMapper_Exception
      */
     public function setListEntries(array $entries)
     {
-        $this->entries = (new JsonMapper())->mapArray($entries, [], EntryItem::class);
+        $entryItem = new EntryItem($this->elementConfiguration);
+
+        foreach ($entries as $entry) {
+            // We don't use `mapArray` because we need EntryItem instances with the element configuration.
+            $this->entries[] = (new JsonMapper())->map($entry, clone $entryItem);
+        }
     }
 
     /**
      * @return array
+     * @throws \ReflectionException
      */
     public function jsonSerialize(): array
     {
-        return array_filter(get_object_vars($this));
+        $result = [];
+        $properties = (new ReflectionClass($this))->getProperties(ReflectionProperty::IS_PUBLIC);
+
+        foreach ($properties as $property) {
+            $result[$property->name] = $property->getValue($this);
+        }
+
+        return array_filter($result);
     }
 }

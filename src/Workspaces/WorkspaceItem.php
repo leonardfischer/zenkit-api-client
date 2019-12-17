@@ -68,6 +68,8 @@ class WorkspaceItem
     public $lists;
 
     /**
+     * This method gets called by the JsonMapper in order to fill 'lists'.
+     *
      * @param array $lists
      * @throws \JsonMapper_Exception
      */

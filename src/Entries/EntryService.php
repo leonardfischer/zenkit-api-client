@@ -6,6 +6,7 @@ use GuzzleHttp\Exception\GuzzleException;
 use idoit\zenkit\API;
 use idoit\zenkit\BadResponseException;
 use idoit\zenkit\Elements\ElementItem;
+use JsonMapper;
 use JsonMapper_Exception;
 
 /**
@@ -133,7 +134,7 @@ class EntryService extends API
             return $rawData;
         }
 
-        return $this->mapper->map($rawData, new EntryCollection());
+        return $this->mapper->map($rawData, new EntryCollection($this->elementConfiguration));
     }
 
     /**
@@ -158,7 +159,6 @@ class EntryService extends API
          *    "taskStyle": false
          * ]
          */
-        var_dump(json_encode($parameters, JSON_PRETTY_PRINT));
         $response = $this->request("lists/{$listShortId}/entries/filter", 'post', $parameters);
 
         $rawData = json_decode($response->getBody()->getContents(), false);
@@ -167,7 +167,15 @@ class EntryService extends API
             return $rawData;
         }
 
-        return $this->mapper->mapArray($rawData, [], EntryItem::class);
+        $result = [];
+        $entryItem = new EntryItem($this->elementConfiguration);
+
+        foreach ($rawData as $entry) {
+            // We don't use `mapArray` because we need EntryItem instances with the element configuration.
+            $result[] = $this->mapper->map($entry, clone $entryItem);
+        }
+
+        return $result;
     }
 
     /**
