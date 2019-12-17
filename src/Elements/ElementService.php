@@ -16,12 +16,12 @@ class ElementService extends API
     /**
      * @param int $listId
      * @param array $parameters
-     * @return ResponseInterface
-     * @throws GuzzleException
+     * @return ElementItem[]
      * @throws BadResponseException
-     * @todo Use JsonMapper to map responses.
+     * @throws GuzzleException
+     * @throws \JsonMapper_Exception
      */
-    public function addElementToList(int $listId, array $parameters): ResponseInterface
+    public function addElementToList(int $listId, array $parameters): array
     {
         /*
          * Example for parameters:
@@ -32,11 +32,19 @@ class ElementService extends API
          *    "ElementCategory": 6
          * ]
          */
-        return $this->request("lists/{$listId}/elements", 'post', $parameters);
+        $response = $this->request("lists/{$listId}/elements", 'post', $parameters);
+
+        $rawData = json_decode($response->getBody()->getContents(), false);
+
+        if ($this->raw) {
+            return $rawData;
+        }
+
+        return $this->mapper->mapArray($rawData, [], ElementItem::class);
     }
 
     /**
-     * @param $listAllId
+     * @param int|string $listAllId
      * @return ElementItem[]
      * @throws GuzzleException
      * @throws \JsonMapper_Exception
@@ -56,15 +64,15 @@ class ElementService extends API
     }
 
     /**
-     * @param $listAllId
-     * @param $elementAllId
+     * @param int|string $listAllId
+     * @param int|string $elementAllId
      * @param array $parameters
-     * @return ResponseInterface
-     * @throws GuzzleException
+     * @return ElementItem[]
      * @throws BadResponseException
-     * @todo Use JsonMapper to map responses.
+     * @throws GuzzleException
+     * @throws \JsonMapper_Exception
      */
-    public function reorderKanban($listAllId, $elementAllId, array $parameters): ResponseInterface
+    public function reorderKanban($listAllId, $elementAllId, array $parameters): array
     {
         /**
          * Example for parameters:
@@ -73,19 +81,27 @@ class ElementService extends API
          *    "toSortId": [3, 2, 1]
          * ]
          */
-        return $this->request("lists/{$listAllId}/elements/{$elementAllId}/kanbanSort", 'put', $parameters);
+        $response = $this->request("lists/{$listAllId}/elements/{$elementAllId}/kanbanSort", 'put', $parameters);
+
+        $rawData = json_decode($response->getBody()->getContents(), false);
+
+        if ($this->raw) {
+            return $rawData;
+        }
+
+        return $this->mapper->mapArray($rawData, [], ElementItem::class);
     }
 
     /**
      * @param int $listId
      * @param int $elementId
      * @param array $parameters
-     * @return ResponseInterface
-     * @throws GuzzleException
+     * @return ElementItem[]
      * @throws BadResponseException
-     * @todo Use JsonMapper to map responses.
+     * @throws GuzzleException
+     * @throws \JsonMapper_Exception
      */
-    public function updateElementInList(int $listId, int $elementId, array $parameters): ResponseInterface
+    public function updateElementInList(int $listId, int $elementId, array $parameters): array
     {
         /**
          * Example for parameters:
@@ -94,6 +110,14 @@ class ElementService extends API
          *    "elementData": [...]
          * ]
          */
-        return $this->request("lists/{$listId}/elements/{$elementId}", 'put', $parameters);
+        $response = $this->request("lists/{$listId}/elements/{$elementId}", 'put', $parameters);
+
+        $rawData = json_decode($response->getBody()->getContents(), false);
+
+        if ($this->raw) {
+            return $rawData;
+        }
+
+        return $this->mapper->mapArray($rawData, [], ElementItem::class);
     }
 }
