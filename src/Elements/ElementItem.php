@@ -2,6 +2,9 @@
 
 namespace idoit\zenkit\Elements;
 
+use ReflectionClass;
+use ReflectionProperty;
+
 /**
  * Class ElementItem
  * @package idoit\zenkit\Elements
@@ -95,9 +98,17 @@ class ElementItem implements \JsonSerializable
 
     /**
      * @return array
+     * @throws \ReflectionException
      */
     public function jsonSerialize(): array
     {
-        return array_filter(get_object_vars($this));
+        $result = [];
+        $properties = (new ReflectionClass($this))->getProperties(ReflectionProperty::IS_PUBLIC);
+
+        foreach ($properties as $property) {
+            $result[$property->name] = $property->getValue($this);
+        }
+
+        return array_filter($result);
     }
 }

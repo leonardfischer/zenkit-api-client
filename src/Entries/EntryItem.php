@@ -4,6 +4,8 @@ namespace idoit\zenkit\Entries;
 
 use idoit\zenkit\API;
 use idoit\zenkit\Elements\ElementItem;
+use ReflectionClass;
+use ReflectionProperty;
 
 /**
  * Class EntryItem
@@ -155,9 +157,17 @@ class EntryItem implements \JsonSerializable
 
     /**
      * @return array
+     * @throws \ReflectionException
      */
     public function jsonSerialize(): array
     {
-        return array_filter(get_object_vars($this));
+        $result = [];
+        $properties = (new ReflectionClass($this))->getProperties(ReflectionProperty::IS_PUBLIC);
+
+        foreach ($properties as $property) {
+            $result[$property->name] = $property->getValue($this);
+        }
+
+        return array_filter($result);
     }
 }
