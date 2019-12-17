@@ -3,7 +3,7 @@
 namespace idoit\zenkit\Entries;
 
 use GuzzleHttp\Exception\GuzzleException;
-use idoit\zenkit\API;
+use idoit\zenkit\AbstractService;
 use idoit\zenkit\BadResponseException;
 use idoit\zenkit\Elements\ElementItem;
 use JsonMapper_Exception;
@@ -12,7 +12,7 @@ use JsonMapper_Exception;
  * Class EntryService
  * @package idoit\zenkit\Entries
  */
-class EntryService extends API
+class EntryService extends AbstractService
 {
     /**
      * @var null|ElementItem[]
@@ -50,7 +50,7 @@ class EntryService extends API
      */
     public function getEntry($listAllId, $listEntryAllId)
     {
-        $response = $this->request("lists/{$listAllId}/entries/{$listEntryAllId}");
+        $response = $this->api->request("lists/{$listAllId}/entries/{$listEntryAllId}");
 
         $rawData = json_decode($response->getBody()->getContents(), false);
 
@@ -125,7 +125,7 @@ class EntryService extends API
          *    "taskStyle": false
          * ]
          */
-        $response = $this->request("lists/{$listShortId}/entries/filter/list", 'post', $parameters);
+        $response = $this->api->request("lists/{$listShortId}/entries/filter/list", 'post', $parameters);
 
         $rawData = json_decode($response->getBody()->getContents(), false);
 
@@ -158,7 +158,7 @@ class EntryService extends API
          *    "taskStyle": false
          * ]
          */
-        $response = $this->request("lists/{$listShortId}/entries/filter", 'post', $parameters);
+        $response = $this->api->request("lists/{$listShortId}/entries/filter", 'post', $parameters);
 
         $rawData = json_decode($response->getBody()->getContents(), false);
 

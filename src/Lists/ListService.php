@@ -3,14 +3,14 @@
 namespace idoit\zenkit\Lists;
 
 use GuzzleHttp\Exception\GuzzleException;
-use idoit\zenkit\API;
+use idoit\zenkit\AbstractService;
 use idoit\zenkit\BadResponseException;
 
 /**
  * Class ListService
  * @package idoit\zenkit\Lists
  */
-class ListService extends API
+class ListService extends AbstractService
 {
     /**
      * @param string $listShortId
@@ -21,7 +21,7 @@ class ListService extends API
      */
     public function getList(string $listShortId)
     {
-        $response = $this->request("lists/{$listShortId}");
+        $response = $this->api->request("lists/{$listShortId}");
 
         $rawData = json_decode($response->getBody()->getContents(), false);
 
@@ -51,7 +51,7 @@ class ListService extends API
      */
     public function getListsWithoutWorkspaceAccess()
     {
-        return $this->request('users/me/lists-without-workspace-access');
+        return $this->api->request('users/me/lists-without-workspace-access');
     }
 
     /**

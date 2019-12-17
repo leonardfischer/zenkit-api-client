@@ -3,14 +3,14 @@
 namespace idoit\zenkit\Elements;
 
 use GuzzleHttp\Exception\GuzzleException;
-use idoit\zenkit\API;
+use idoit\zenkit\AbstractService;
 use idoit\zenkit\BadResponseException;
 
 /**
  * Class ElementService
  * @package idoit\zenkit\Elements
  */
-class ElementService extends API
+class ElementService extends AbstractService
 {
     /**
      * @param int $listId
@@ -31,7 +31,7 @@ class ElementService extends API
          *    "ElementCategory": 6
          * ]
          */
-        $response = $this->request("lists/{$listId}/elements", 'post', $parameters);
+        $response = $this->api->request("lists/{$listId}/elements", 'post', $parameters);
 
         $rawData = json_decode($response->getBody()->getContents(), false);
 
@@ -51,7 +51,7 @@ class ElementService extends API
      */
     public function getElementsInList($listAllId): array
     {
-        $response = $this->request("lists/{$listAllId}/elements");
+        $response = $this->api->request("lists/{$listAllId}/elements");
 
         $rawData = json_decode($response->getBody()->getContents(), false);
 
@@ -80,7 +80,7 @@ class ElementService extends API
          *    "toSortId": [3, 2, 1]
          * ]
          */
-        $response = $this->request("lists/{$listAllId}/elements/{$elementAllId}/kanbanSort", 'put', $parameters);
+        $response = $this->api->request("lists/{$listAllId}/elements/{$elementAllId}/kanbanSort", 'put', $parameters);
 
         $rawData = json_decode($response->getBody()->getContents(), false);
 
@@ -109,7 +109,7 @@ class ElementService extends API
          *    "elementData": [...]
          * ]
          */
-        $response = $this->request("lists/{$listId}/elements/{$elementId}", 'put', $parameters);
+        $response = $this->api->request("lists/{$listId}/elements/{$elementId}", 'put', $parameters);
 
         $rawData = json_decode($response->getBody()->getContents(), false);
 

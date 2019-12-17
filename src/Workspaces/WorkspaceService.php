@@ -3,14 +3,14 @@
 namespace idoit\zenkit\Workspaces;
 
 use GuzzleHttp\Exception\GuzzleException;
-use idoit\zenkit\API;
+use idoit\zenkit\AbstractService;
 use idoit\zenkit\BadResponseException;
 
 /**
  * Class WorkspaceService
  * @package idoit\zenkit\Workspaces
  */
-class WorkspaceService extends API
+class WorkspaceService extends AbstractService
 {
     /**
      * @param int|string $workspaceAllId
@@ -21,7 +21,7 @@ class WorkspaceService extends API
      */
     public function getWorkspace($workspaceAllId)
     {
-        $response = $this->request("workspaces/{$workspaceAllId}");
+        $response = $this->api->request("workspaces/{$workspaceAllId}");
 
         $rawData = json_decode($response->getBody()->getContents(), false);
 
@@ -54,7 +54,7 @@ class WorkspaceService extends API
      */
     public function getAllWorkspacesAndLists()
     {
-        $response = $this->request('users/me/workspacesWithLists');
+        $response = $this->api->request('users/me/workspacesWithLists');
 
         $rawData = json_decode($response->getBody()->getContents(), false);
 
