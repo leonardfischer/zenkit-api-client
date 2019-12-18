@@ -47,11 +47,22 @@ class ListService extends AbstractService
     }
 
     /**
-     * @todo
+     * @return ListItem[]
+     * @throws BadResponseException
+     * @throws GuzzleException
+     * @throws \JsonMapper_Exception
      */
-    public function getListsWithoutWorkspaceAccess()
+    public function getListsWithoutWorkspaceAccess(): array
     {
-        return $this->api->request('users/me/lists-without-workspace-access');
+        $response = $this->api->request('users/me/lists-without-workspace-access');
+
+        $rawData = json_decode($response->getBody()->getContents(), false);
+
+        if ($this->raw) {
+            return $rawData;
+        }
+
+        return $this->mapper->mapArray($rawData, [], ListItem::class);
     }
 
     /**
