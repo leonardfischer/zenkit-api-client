@@ -31,6 +31,12 @@ class ElementService extends AbstractService
          *    "ElementCategory": 6
          * ]
          */
+
+        // In case of passed parameters, we prepare the correct format for Guzzle.
+        if (is_array($parameters) && count($parameters)) {
+            $parameters = ['json' => $parameters];
+        }
+
         $response = $this->api->request("lists/{$listId}/elements", 'post', $parameters);
 
         $rawData = json_decode($response->getBody()->getContents(), false);
@@ -80,6 +86,12 @@ class ElementService extends AbstractService
          *    "toSortId": [3, 2, 1]
          * ]
          */
+
+        // In case of passed parameters, we prepare the correct format for Guzzle.
+        if (is_array($parameters) && count($parameters)) {
+            $parameters = ['json' => $parameters];
+        }
+
         $response = $this->api->request("lists/{$listAllId}/elements/{$elementAllId}/kanbanSort", 'put', $parameters);
 
         $rawData = json_decode($response->getBody()->getContents(), false);
@@ -109,6 +121,12 @@ class ElementService extends AbstractService
          *    "elementData": [...]
          * ]
          */
+
+        // In case of passed parameters, we prepare the correct format for Guzzle.
+        if (is_array($parameters) && count($parameters)) {
+            $parameters = ['json' => $parameters];
+        }
+
         $response = $this->api->request("lists/{$listId}/elements/{$elementId}", 'put', $parameters);
 
         $rawData = json_decode($response->getBody()->getContents(), false);

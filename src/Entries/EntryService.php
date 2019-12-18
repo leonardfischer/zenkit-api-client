@@ -125,6 +125,12 @@ class EntryService extends AbstractService
          *    "taskStyle": false
          * ]
          */
+
+        // In case of passed parameters, we prepare the correct format for Guzzle.
+        if (is_array($parameters) && count($parameters)) {
+            $parameters = ['json' => $parameters];
+        }
+
         $response = $this->api->request("lists/{$listShortId}/entries/filter/list", 'post', $parameters);
 
         $rawData = json_decode($response->getBody()->getContents(), false);
@@ -158,6 +164,12 @@ class EntryService extends AbstractService
          *    "taskStyle": false
          * ]
          */
+
+        // In case of passed parameters, we prepare the correct format for Guzzle.
+        if (is_array($parameters) && count($parameters)) {
+            $parameters = ['json' => $parameters];
+        }
+
         $response = $this->api->request("lists/{$listShortId}/entries/filter", 'post', $parameters);
 
         $rawData = json_decode($response->getBody()->getContents(), false);
