@@ -43,4 +43,15 @@ abstract class AbstractService
             $this->mapper->setLogger($logger);
         }
     }
+
+    /**
+     * @param bool $raw
+     * @return $this
+     */
+    public function setRawOutput(bool $raw): self
+    {
+        $this->raw = $raw;
+
+        return $this;
+    }
 }
