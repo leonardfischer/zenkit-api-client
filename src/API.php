@@ -81,7 +81,12 @@ class API
         $responseStatus = $response->getStatusCode();
 
         if ($responseStatus < 200 || $responseStatus > 299) {
-            throw new BadResponseException('The request did not answer with a 2xx status code.', $response->getStatusCode());
+            $exception = new BadResponseException(
+                'The request did not answer with a 2xx status code (' . $responseStatus . ').',
+                $responseStatus
+            );
+
+            throw $exception->setResponse($response);
         }
 
         return $response;
