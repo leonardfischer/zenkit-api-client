@@ -30,18 +30,27 @@ class API
 
     /**
      * API constructor.
+     * You can pass optional parameters to the Guzzle HTTP Client, please refer to:
+     * http://docs.guzzlephp.org/en/stable/request-options.html
+     *
      * @param string $apiKey
+     * @param array|null $requestOptions
      */
-    public function __construct(string $apiKey)
+    public function __construct(string $apiKey, array $requestOptions = null)
     {
-        $this->client = new Client([
-            'base_uri' => self::URL,
-            'headers' => [
-                'Accept' => 'application/json',
-                'Content-Type' => 'application/json',
-                'Zenkit-API-Key' => $apiKey
+        $options = array_replace_recursive(
+            (array)$requestOptions,
+            [
+                'base_uri' => self::URL,
+                'headers' => [
+                    'Accept' => 'application/json',
+                    'Content-Type' => 'application/json',
+                    'Zenkit-API-Key' => $apiKey
+                ]
             ]
-        ]);
+        );
+
+        $this->client = new Client($options);
     }
 
     /**
