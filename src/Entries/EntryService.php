@@ -5,7 +5,8 @@ namespace idoit\zenkit\Entries;
 use GuzzleHttp\Exception\GuzzleException;
 use idoit\zenkit\AbstractService;
 use idoit\zenkit\BadResponseException;
-use idoit\zenkit\Elements\ElementItem;
+use idoit\zenkit\DataTypes\ElementItem;
+use idoit\zenkit\DataTypes\EntryItem;
 use JsonMapper_Exception;
 
 /**
@@ -17,7 +18,7 @@ class EntryService extends AbstractService
     /**
      * @var null|ElementItem[]
      */
-    private $elementConfiguration = null;
+    private $elementConfiguration;
 
     /**
      * @param ElementItem[] $elementConfiguration

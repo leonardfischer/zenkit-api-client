@@ -1,15 +1,14 @@
 <?php
 
-namespace idoit\zenkit\Lists;
+namespace idoit\zenkit\DataTypes;
 
-use ReflectionClass;
-use ReflectionProperty;
+use idoit\zenkit\AbstractDataType;
 
 /**
- * Class Entry
- * @package idoit\zenkit\Entries
+ * Class ListItem
+ * @package idoit\zenkit\DataTypes
  */
-class ListItem implements \JsonSerializable
+class ListItem extends AbstractDataType
 {
     /**
      * @var int
@@ -50,6 +49,11 @@ class ListItem implements \JsonSerializable
      * @var string
      */
     public $sortOrder;
+
+    /**
+     * @var string
+     */
+    public $description;
 
     /**
      * @var null|string
@@ -120,20 +124,4 @@ class ListItem implements \JsonSerializable
      * @var int
      */
     public $visibility;
-
-    /**
-     * @return array
-     * @throws \ReflectionException
-     */
-    public function jsonSerialize(): array
-    {
-        $result = [];
-        $properties = (new ReflectionClass($this))->getProperties(ReflectionProperty::IS_PUBLIC);
-
-        foreach ($properties as $property) {
-            $result[$property->name] = $property->getValue($this);
-        }
-
-        return array_filter($result);
-    }
 }

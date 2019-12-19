@@ -5,6 +5,8 @@ namespace idoit\zenkit\Elements;
 use GuzzleHttp\Exception\GuzzleException;
 use idoit\zenkit\AbstractService;
 use idoit\zenkit\BadResponseException;
+use idoit\zenkit\DataTypes\ElementItem;
+use JsonMapper_Exception;
 
 /**
  * Class ElementService
@@ -18,7 +20,7 @@ class ElementService extends AbstractService
      * @return ElementItem[]
      * @throws BadResponseException
      * @throws GuzzleException
-     * @throws \JsonMapper_Exception
+     * @throws JsonMapper_Exception
      */
     public function addElementToList(int $listId, array $parameters): array
     {
@@ -52,7 +54,7 @@ class ElementService extends AbstractService
      * @param int|string $listAllId
      * @return ElementItem[]
      * @throws GuzzleException
-     * @throws \JsonMapper_Exception
+     * @throws JsonMapper_Exception
      * @throws BadResponseException
      */
     public function getElementsInList($listAllId): array
@@ -75,7 +77,7 @@ class ElementService extends AbstractService
      * @return ElementItem[]
      * @throws BadResponseException
      * @throws GuzzleException
-     * @throws \JsonMapper_Exception
+     * @throws JsonMapper_Exception
      */
     public function reorderKanban($listAllId, $elementAllId, array $parameters): array
     {
@@ -110,7 +112,7 @@ class ElementService extends AbstractService
      * @return ElementItem[]
      * @throws BadResponseException
      * @throws GuzzleException
-     * @throws \JsonMapper_Exception
+     * @throws JsonMapper_Exception
      */
     public function updateElementInList(int $listId, int $elementId, array $parameters): array
     {

@@ -1,11 +1,16 @@
 <?php
 
-namespace idoit\zenkit\Workspaces;
+namespace idoit\zenkit\DataTypes;
 
-use idoit\zenkit\Lists\ListItem;
+use idoit\zenkit\AbstractDataType;
 use JsonMapper;
+use JsonMapper_Exception;
 
-class WorkspaceItem
+/**
+ * Class WorkspaceItem
+ * @package idoit\zenkit\DataTypes
+ */
+class WorkspaceItem extends AbstractDataType
 {
     /**
      * @var int
@@ -71,7 +76,7 @@ class WorkspaceItem
      * This method gets called by the JsonMapper in order to fill 'lists'.
      *
      * @param array $lists
-     * @throws \JsonMapper_Exception
+     * @throws JsonMapper_Exception
      */
     public function setLists(array $lists)
     {

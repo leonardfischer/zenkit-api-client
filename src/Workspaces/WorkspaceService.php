@@ -5,6 +5,8 @@ namespace idoit\zenkit\Workspaces;
 use GuzzleHttp\Exception\GuzzleException;
 use idoit\zenkit\AbstractService;
 use idoit\zenkit\BadResponseException;
+use idoit\zenkit\DataTypes\WorkspaceItem;
+use JsonMapper_Exception;
 
 /**
  * Class WorkspaceService
@@ -17,7 +19,7 @@ class WorkspaceService extends AbstractService
      * @return object|WorkspaceItem
      * @throws BadResponseException
      * @throws GuzzleException
-     * @throws \JsonMapper_Exception
+     * @throws JsonMapper_Exception
      */
     public function getWorkspace($workspaceAllId)
     {
@@ -49,7 +51,7 @@ class WorkspaceService extends AbstractService
     /**
      * @return object|WorkspaceItem[]
      * @throws GuzzleException
-     * @throws \JsonMapper_Exception
+     * @throws JsonMapper_Exception
      * @throws BadResponseException
      */
     public function getAllWorkspacesAndLists()

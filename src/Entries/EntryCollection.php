@@ -2,16 +2,17 @@
 
 namespace idoit\zenkit\Entries;
 
-use idoit\zenkit\Elements\ElementItem;
+use idoit\zenkit\AbstractDataType;
+use idoit\zenkit\DataTypes\ElementItem;
+use idoit\zenkit\DataTypes\EntryItem;
 use JsonMapper;
-use ReflectionClass;
-use ReflectionProperty;
+use JsonMapper_Exception;
 
 /**
  * Class EntryCollection
  * @package idoit\zenkit\Entries
  */
-class EntryCollection implements \JsonSerializable
+class EntryCollection extends AbstractDataType
 {
     /**
      * @var array
@@ -43,7 +44,7 @@ class EntryCollection implements \JsonSerializable
      * This method gets called by the JsonMapper in order to fill 'listEntries'.
      *
      * @param array $entries
-     * @throws \JsonMapper_Exception
+     * @throws JsonMapper_Exception
      */
     public function setListEntries(array $entries)
     {
@@ -58,21 +59,5 @@ class EntryCollection implements \JsonSerializable
             // We don't use `mapArray` because we need EntryItem instances with the element configuration.
             $this->entries[] = $mapper->map($entry, clone $entryItem);
         }
-    }
-
-    /**
-     * @return array
-     * @throws \ReflectionException
-     */
-    public function jsonSerialize(): array
-    {
-        $result = [];
-        $properties = (new ReflectionClass($this))->getProperties(ReflectionProperty::IS_PUBLIC);
-
-        foreach ($properties as $property) {
-            $result[$property->name] = $property->getValue($this);
-        }
-
-        return array_filter($result);
     }
 }

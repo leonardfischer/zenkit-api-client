@@ -5,6 +5,8 @@ namespace idoit\zenkit\Lists;
 use GuzzleHttp\Exception\GuzzleException;
 use idoit\zenkit\AbstractService;
 use idoit\zenkit\BadResponseException;
+use idoit\zenkit\DataTypes\ListItem;
+use JsonMapper_Exception;
 
 /**
  * Class ListService
@@ -17,7 +19,7 @@ class ListService extends AbstractService
      * @return object|ListItem
      * @throws BadResponseException
      * @throws GuzzleException
-     * @throws \JsonMapper_Exception
+     * @throws JsonMapper_Exception
      */
     public function getList(string $listShortId)
     {
@@ -50,7 +52,7 @@ class ListService extends AbstractService
      * @return ListItem[]
      * @throws BadResponseException
      * @throws GuzzleException
-     * @throws \JsonMapper_Exception
+     * @throws JsonMapper_Exception
      */
     public function getListsWithoutWorkspaceAccess(): array
     {

@@ -1,24 +1,22 @@
 <?php
 
-namespace idoit\zenkit\Entries;
+namespace idoit\zenkit\DataTypes;
 
+use idoit\zenkit\AbstractDataType;
 use idoit\zenkit\API;
-use idoit\zenkit\Elements\ElementItem;
-use ReflectionClass;
-use ReflectionProperty;
 
 /**
  * Class EntryItem
- * @package idoit\zenkit\Entries
+ * @package idoit\zenkit\DataTypes
  */
-class EntryItem implements \JsonSerializable
+class EntryItem extends AbstractDataType
 {
     /**
      * Optional element configuration.
      *
      * @var ElementItem[]
      */
-    private $elementConfiguration = null;
+    private $elementConfiguration;
 
     /**
      * Array of elements with all their mapped values.
@@ -43,6 +41,11 @@ class EntryItem implements \JsonSerializable
     public $uuid;
 
     /**
+     * @var int
+     */
+    public $listId;
+
+    /**
      * @var \DateTime
      */
     public $created_at;
@@ -56,6 +59,21 @@ class EntryItem implements \JsonSerializable
      * @var null|\DateTime
      */
     public $deprecated_at;
+
+    /**
+     * @var string
+     */
+    public $created_by_displayname;
+
+    /**
+     * @var string
+     */
+    public $updated_by_displayname;
+
+    /**
+     * @var null|string
+     */
+    public $deprecated_by_displayname;
 
     /**
      * @var int
@@ -85,27 +103,12 @@ class EntryItem implements \JsonSerializable
     /**
      * @var int
      */
-    public $listId;
-
-    /**
-     * @var int
-     */
     public $comment_count;
 
     /**
      * @var array
      */
     public $checklists;
-
-    /**
-     * @var string
-     */
-    public $created_by_displayname;
-
-    /**
-     * @var string
-     */
-    public $updated_by_displayname;
 
     /**
      * EntryItem constructor.
@@ -153,21 +156,5 @@ class EntryItem implements \JsonSerializable
                 return;
             }
         }
-    }
-
-    /**
-     * @return array
-     * @throws \ReflectionException
-     */
-    public function jsonSerialize(): array
-    {
-        $result = [];
-        $properties = (new ReflectionClass($this))->getProperties(ReflectionProperty::IS_PUBLIC);
-
-        foreach ($properties as $property) {
-            $result[$property->name] = $property->getValue($this);
-        }
-
-        return array_filter($result);
     }
 }
