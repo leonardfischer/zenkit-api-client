@@ -2,13 +2,14 @@
 
 namespace idoit\zenkit;
 
+use Exception;
 use Psr\Http\Message\ResponseInterface;
 
 /**
  * Class BadResponseException
  * @package idoit\zenkit
  */
-class BadResponseException extends \Exception
+class BadResponseException extends Exception
 {
     /**
      * @var ResponseInterface

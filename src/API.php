@@ -72,7 +72,6 @@ class API
      * @param string|null $method
      * @param array|null $parameters
      * @return ResponseInterface
-     * @throws BadResponseException
      * @throws GuzzleException
      */
     public function request(string $uri, string $method = null, array $parameters = null): ResponseInterface
