@@ -96,7 +96,7 @@ class UserItem extends AbstractDataType
     public $isImagePreferred;
 
     /**
-     * @var \idoit\zenkit\DataTypes\EmailItem[]
+     * @var null|\idoit\zenkit\DataTypes\EmailItem[]
      */
     public $emails;
 }

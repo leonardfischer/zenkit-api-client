@@ -5,6 +5,7 @@ namespace idoit\zenkit\Workspaces;
 use GuzzleHttp\Exception\GuzzleException;
 use idoit\zenkit\AbstractService;
 use idoit\zenkit\BadResponseException;
+use idoit\zenkit\DataTypes\UserItem;
 use idoit\zenkit\DataTypes\WorkspaceItem;
 use JsonMapper_Exception;
 
@@ -42,10 +43,22 @@ class WorkspaceService extends AbstractService
     }
 
     /**
-     * @todo
+     * @param int $workspaceId
+     * @return object|UserItem[]
+     * @throws GuzzleException
+     * @throws JsonMapper_Exception
      */
-    private function getUsersForWorkspaces()
+    public function getUsersForWorkspaces(int $workspaceId)
     {
+        $response = $this->api->request("workspaces/{$workspaceId}/users");
+
+        $rawData = json_decode($response->getBody()->getContents(), false);
+
+        if ($this->raw) {
+            return $rawData;
+        }
+
+        return $this->mapper->mapArray($rawData, [], UserItem::class);
     }
 
     /**
