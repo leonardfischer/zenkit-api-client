@@ -8,6 +8,7 @@ use GuzzleHttp\Exception\GuzzleException;
 use idoit\zenkit\Elements\ElementService;
 use idoit\zenkit\Entries\EntryService;
 use idoit\zenkit\Lists\ListService;
+use idoit\zenkit\Users\UserService;
 use idoit\zenkit\Workspaces\WorkspaceService;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Log\LoggerInterface;
@@ -119,6 +120,16 @@ class API
     public function getListService(bool $raw = null, LoggerInterface $logger = null): ListService
     {
         return new ListService($this, (bool)$raw, $logger);
+    }
+
+    /**
+     * @param bool|null $raw
+     * @param LoggerInterface|null $logger
+     * @return UserService
+     */
+    public function getUserService(bool $raw = null, LoggerInterface $logger = null): UserService
+    {
+        return new UserService($this, (bool)$raw, $logger);
     }
 
     /**
