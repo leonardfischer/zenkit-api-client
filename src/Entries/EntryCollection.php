@@ -22,7 +22,7 @@ class EntryCollection extends AbstractDataType
     /**
      * @var array
      */
-    public $entries;
+    public $listEntries;
 
     /**
      * @var ElementItem[]
@@ -57,7 +57,7 @@ class EntryCollection extends AbstractDataType
 
         foreach ($entries as $entry) {
             // We don't use `mapArray` because we need EntryItem instances with the element configuration.
-            $this->entries[] = $mapper->map($entry, clone $entryItem);
+            $this->listEntries[] = $mapper->map($entry, clone $entryItem);
         }
     }
 }

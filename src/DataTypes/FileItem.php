@@ -71,17 +71,17 @@ class FileItem extends AbstractDataType
     public $height;
 
     /**
-     * @var string
+     * @var \DateTime
      */
     public $created_at;
 
     /**
-     * @var string
+     * @var \DateTime
      */
     public $updated_at;
 
     /**
-     * @var string
+     * @var null|\DateTime
      */
     public $deprecated_at;
 
