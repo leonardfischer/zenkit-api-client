@@ -4,8 +4,6 @@ namespace idoit\zenkit\Users;
 
 use GuzzleHttp\Exception\GuzzleException;
 use idoit\zenkit\AbstractService;
-use idoit\zenkit\BadResponseException;
-use idoit\zenkit\DataTypes\ListItem;
 use idoit\zenkit\DataTypes\UserItem;
 use JsonMapper_Exception;
 
@@ -16,9 +14,7 @@ use JsonMapper_Exception;
 class UserService extends AbstractService
 {
     /**
-     * @param string $listShortId
-     * @return object|ListItem
-     * @throws BadResponseException
+     * @return object|UserItem
      * @throws GuzzleException
      * @throws JsonMapper_Exception
      */
