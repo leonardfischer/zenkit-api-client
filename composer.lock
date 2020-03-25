@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "db70bb54dda317fddc734339aed54f5b",
+    "content-hash": "33362e0a9624257cac52cd7de926f808",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -197,16 +197,16 @@
         },
         {
             "name": "netresearch/jsonmapper",
-            "version": "v1.6.0",
+            "version": "v2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cweiske/jsonmapper.git",
-                "reference": "0d4d1b48d682a93b6bfedf60b88c7750e9cb0b06"
+                "reference": "e245890383c3ed38b6d202ee373c23ccfebc0f54"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cweiske/jsonmapper/zipball/0d4d1b48d682a93b6bfedf60b88c7750e9cb0b06",
-                "reference": "0d4d1b48d682a93b6bfedf60b88c7750e9cb0b06",
+                "url": "https://api.github.com/repos/cweiske/jsonmapper/zipball/e245890383c3ed38b6d202ee373c23ccfebc0f54",
+                "reference": "e245890383c3ed38b6d202ee373c23ccfebc0f54",
                 "shasum": ""
             },
             "require": {
@@ -217,8 +217,8 @@
                 "php": ">=5.6"
             },
             "require-dev": {
-                "phpunit/phpunit": "~4.8.35 || ~5.7 || ~6.4",
-                "squizlabs/php_codesniffer": "~1.5"
+                "phpunit/phpunit": "~4.8.35 || ~5.7 || ~6.4 || ~7.0",
+                "squizlabs/php_codesniffer": "~3.5"
             },
             "type": "library",
             "autoload": {
@@ -239,7 +239,7 @@
                 }
             ],
             "description": "Map nested JSON structures onto PHP classes",
-            "time": "2019-08-15T19:41:25+00:00"
+            "time": "2020-03-04T17:23:33+00:00"
         },
         {
             "name": "psr/http-message",
@@ -342,5 +342,6 @@
         "php": ">=7.0",
         "ext-json": "*"
     },
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "1.1.0"
 }
