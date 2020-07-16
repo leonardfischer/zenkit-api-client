@@ -23,7 +23,7 @@
   "require": {
     "php": ">=7.0",
     "ext-json": "*",
-    "guzzlehttp/guzzle": "^6.5",
+    "guzzlehttp/guzzle": "^6.5|^7.0",
     "netresearch/jsonmapper": "^1.6|^2.0"
   },
   "autoload": {
