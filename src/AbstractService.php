@@ -43,6 +43,9 @@ abstract class AbstractService
         $this->raw = (bool)$raw;
 
         if ($logger !== null) {
+            /**
+             * @psalm-suppress InvalidArgument
+             */
             $this->mapper->setLogger($logger);
         }
     }

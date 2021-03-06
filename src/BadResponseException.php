@@ -8,7 +8,8 @@ use Psr\Http\Message\ResponseInterface;
 /**
  * Class BadResponseException
  *
- * @package idoit\zenkit
+ * @package        idoit\zenkit
+ * @psalm-suppress MissingConstructor
  */
 class BadResponseException extends Exception
 {
