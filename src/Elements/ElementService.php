@@ -10,12 +10,13 @@ use JsonMapper_Exception;
 
 /**
  * Class ElementService
+ *
  * @package idoit\zenkit\Elements
  */
 class ElementService extends AbstractService
 {
     /**
-     * @param int $listId
+     * @param int   $listId
      * @param array $parameters
      * @return ElementItem[]
      * @throws BadResponseException
@@ -35,7 +36,7 @@ class ElementService extends AbstractService
          */
 
         // In case of passed parameters, we prepare the correct format for Guzzle.
-        if (is_array($parameters) && count($parameters)) {
+        if (count($parameters)) {
             $parameters = ['json' => $parameters];
         }
 
@@ -73,7 +74,7 @@ class ElementService extends AbstractService
     /**
      * @param int|string $listAllId
      * @param int|string $elementAllId
-     * @param array $parameters
+     * @param array      $parameters
      * @return ElementItem[]
      * @throws BadResponseException
      * @throws GuzzleException
@@ -90,7 +91,7 @@ class ElementService extends AbstractService
          */
 
         // In case of passed parameters, we prepare the correct format for Guzzle.
-        if (is_array($parameters) && count($parameters)) {
+        if (count($parameters)) {
             $parameters = ['json' => $parameters];
         }
 
@@ -106,8 +107,8 @@ class ElementService extends AbstractService
     }
 
     /**
-     * @param int $listId
-     * @param int $elementId
+     * @param int   $listId
+     * @param int   $elementId
      * @param array $parameters
      * @return ElementItem[]
      * @throws BadResponseException
@@ -125,7 +126,7 @@ class ElementService extends AbstractService
          */
 
         // In case of passed parameters, we prepare the correct format for Guzzle.
-        if (is_array($parameters) && count($parameters)) {
+        if (count($parameters)) {
             $parameters = ['json' => $parameters];
         }
 
