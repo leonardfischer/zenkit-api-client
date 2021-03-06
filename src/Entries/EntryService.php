@@ -11,7 +11,9 @@ use JsonMapper_Exception;
 
 /**
  * Class EntryService
- * @package idoit\zenkit\Entries
+ *
+ * @package        idoit\zenkit\Entries
+ * @psalm-suppress PropertyNotSetInConstructor
  */
 class EntryService extends AbstractService
 {
@@ -42,8 +44,8 @@ class EntryService extends AbstractService
     }
 
     /**
-     * @param $listAllId
-     * @param $listEntryAllId
+     * @param int|string $listAllId
+     * @param int|string $listEntryAllId
      * @return object|EntryItem
      * @throws GuzzleException
      * @throws JsonMapper_Exception
@@ -60,6 +62,10 @@ class EntryService extends AbstractService
         }
 
         $entryItem = new EntryItem($this->elementConfiguration);
+
+        /**
+         * @psalm-suppress PossiblyNullPropertyAssignmentValue
+         */
         $this->mapper->undefinedPropertyHandler = null;
 
         if ($this->elementConfiguration !== null) {
@@ -70,49 +76,14 @@ class EntryService extends AbstractService
     }
 
     /**
-     * @todo
-     */
-    private function createEntry()
-    {
-    }
-
-    /**
-     * @todo
-     */
-    private function deprecateEntries()
-    {
-    }
-
-    /**
-     * @todo
-     */
-    private function deleteEntry()
-    {
-    }
-
-    /**
-     * @todo
-     */
-    private function updateChecklists()
-    {
-    }
-
-    /**
-     * @todo
-     */
-    private function searchEntriesGlobal()
-    {
-    }
-
-    /**
-     * @param string $listShortId
-     * @param array $parameters
+     * @param string     $listShortId
+     * @param array|null $parameters
      * @return object|EntryCollection
      * @throws BadResponseException
      * @throws GuzzleException
      * @throws JsonMapper_Exception
      */
-    public function getEntriesForListView(string $listShortId, array $parameters = null)
+    public function getEntriesForListView(string $listShortId, ?array $parameters = null)
     {
         /**
          * Example for parameters:
@@ -144,14 +115,14 @@ class EntryService extends AbstractService
     }
 
     /**
-     * @param string $listShortId
-     * @param array $parameters
+     * @param string     $listShortId
+     * @param array|null $parameters
      * @return object|EntryItem[]
      * @throws BadResponseException
      * @throws GuzzleException
      * @throws JsonMapper_Exception
      */
-    public function getEntriesFromFilter(string $listShortId, array $parameters = null)
+    public function getEntriesFromFilter(string $listShortId, ?array $parameters = null)
     {
         /**
          * Example for parameters:
@@ -195,37 +166,82 @@ class EntryService extends AbstractService
     }
 
     /**
+     * @return void
      * @todo
      */
-    private function reorderEntry()
+    private function createEntry(): void
     {
     }
 
     /**
+     * @return void
      * @todo
      */
-    private function restoreEntry()
+    private function deprecateEntries(): void
     {
     }
 
     /**
+     * @return void
      * @todo
      */
-    private function updateEntry()
+    private function deleteEntry(): void
     {
     }
 
     /**
+     * @return void
      * @todo
      */
-    private function updateEntryField()
+    private function updateChecklists(): void
     {
     }
 
     /**
+     * @return void
      * @todo
      */
-    private function synchronizeEntriesWithWatermark()
+    private function searchEntriesGlobal(): void
+    {
+    }
+
+    /**
+     * @return void
+     * @todo
+     */
+    private function reorderEntry(): void
+    {
+    }
+
+    /**
+     * @return void
+     * @todo
+     */
+    private function restoreEntry(): void
+    {
+    }
+
+    /**
+     * @return void
+     * @todo
+     */
+    private function updateEntry(): void
+    {
+    }
+
+    /**
+     * @return void
+     * @todo
+     */
+    private function updateEntryField(): void
+    {
+    }
+
+    /**
+     * @return void
+     * @todo
+     */
+    private function synchronizeEntriesWithWatermark(): void
     {
     }
 }

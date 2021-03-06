@@ -10,7 +10,9 @@ use JsonMapper_Exception;
 
 /**
  * Class EntryCollection
- * @package idoit\zenkit\Entries
+ *
+ * @package        idoit\zenkit\Entries
+ * @psalm-suppress PropertyNotSetInConstructor
  */
 class EntryCollection extends AbstractDataType
 {
@@ -31,6 +33,7 @@ class EntryCollection extends AbstractDataType
 
     /**
      * EntryCollection constructor.
+     *
      * @param ElementItem[] $elementConfiguration
      */
     public function __construct(array $elementConfiguration = null)
@@ -44,9 +47,10 @@ class EntryCollection extends AbstractDataType
      * This method gets called by the JsonMapper in order to fill 'listEntries'.
      *
      * @param array $entries
+     * @return void
      * @throws JsonMapper_Exception
      */
-    public function setListEntries(array $entries)
+    public function setListEntries(array $entries): void
     {
         $mapper = new JsonMapper();
         $entryItem = new EntryItem($this->elementConfiguration);
