@@ -8,7 +8,8 @@ use idoit\zenkit\AbstractDataType;
 /**
  * Class ListItem
  *
- * @package idoit\zenkit\DataTypes
+ * @package        idoit\zenkit\DataTypes
+ * @psalm-suppress MissingConstructor
  */
 class ListItem extends AbstractDataType
 {

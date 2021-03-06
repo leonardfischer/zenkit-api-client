@@ -8,7 +8,8 @@ use idoit\zenkit\API;
 /**
  * Class EntryItem
  *
- * @package idoit\zenkit\DataTypes
+ * @package        idoit\zenkit\DataTypes
+ * @psalm-suppress PropertyNotSetInConstructor
  */
 class EntryItem extends AbstractDataType
 {
@@ -116,7 +117,7 @@ class EntryItem extends AbstractDataType
      *
      * @param array|null $elementConfiguration
      */
-    public function __construct(array $elementConfiguration = null)
+    public function __construct(?array $elementConfiguration = null)
     {
         if (is_array($elementConfiguration) && $elementConfiguration[0] instanceof ElementItem) {
             $this->elementConfiguration = $elementConfiguration;

@@ -9,7 +9,8 @@ use JsonMapper_Exception;
 /**
  * Class WorkspaceItem
  *
- * @package idoit\zenkit\DataTypes
+ * @package        idoit\zenkit\DataTypes
+ * @psalm-suppress MissingConstructor
  */
 class WorkspaceItem extends AbstractDataType
 {
