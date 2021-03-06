@@ -7,6 +7,7 @@ use Psr\Log\LoggerInterface;
 
 /**
  * Class API
+ *
  * @package idoit\zenkit
  */
 abstract class AbstractService
@@ -23,17 +24,19 @@ abstract class AbstractService
 
     /**
      * Should the client output raw data?
+     *
      * @var bool
      */
     protected $raw = false;
 
     /**
      * AbstractService constructor.
-     * @param API $api
-     * @param bool|null $raw
+     *
+     * @param API                  $api
+     * @param bool|null            $raw
      * @param LoggerInterface|null $logger
      */
-    public function __construct(API $api, bool $raw = null, LoggerInterface $logger = null)
+    public function __construct(API $api, ?bool $raw = null, ?LoggerInterface $logger = null)
     {
         $this->api = $api;
         $this->mapper = new JsonMapper();

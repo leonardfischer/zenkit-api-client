@@ -7,6 +7,7 @@ use Psr\Http\Message\ResponseInterface;
 
 /**
  * Class BadResponseException
+ *
  * @package idoit\zenkit
  */
 class BadResponseException extends Exception
@@ -18,10 +19,13 @@ class BadResponseException extends Exception
 
     /**
      * @param ResponseInterface $response
+     * @return $this
      */
-    public function setResponse(ResponseInterface $response)
+    public function setResponse(ResponseInterface $response): BadResponseException
     {
         $this->response = $response;
+
+        return $this;
     }
 
     /**

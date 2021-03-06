@@ -15,6 +15,7 @@ use Psr\Log\LoggerInterface;
 
 /**
  * Class API
+ *
  * @package idoit\zenkit
  */
 class API
@@ -22,7 +23,7 @@ class API
     /**
      * Base API URL for zenkit.
      */
-    const URL = 'https://zenkit.com/api/v1/';
+    public const URL = 'https://zenkit.com/api/v1/';
 
     /**
      * @var ClientInterface
@@ -34,18 +35,18 @@ class API
      * You can pass optional parameters to the Guzzle HTTP Client, please refer to:
      * http://docs.guzzlephp.org/en/stable/request-options.html
      *
-     * @param string $apiKey
+     * @param string     $apiKey
      * @param array|null $requestOptions
      */
-    public function __construct(string $apiKey, array $requestOptions = null)
+    public function __construct(string $apiKey, ?array $requestOptions = null)
     {
         $options = array_replace_recursive(
             (array)$requestOptions,
             [
                 'base_uri' => self::URL,
-                'headers' => [
-                    'Accept' => 'application/json',
-                    'Content-Type' => 'application/json',
+                'headers'  => [
+                    'Accept'         => 'application/json',
+                    'Content-Type'   => 'application/json',
                     'Zenkit-API-Key' => $apiKey
                 ]
             ]
@@ -59,9 +60,9 @@ class API
      * Copied from `JsonMapper->getCamelCaseName()`.
      *
      * @param string $name Property name
-     * @return string CamelCasedVariableName
+     * @return string
      */
-    public static function getCamelCaseName($name): string
+    public static function getCamelCaseName(string $name): string
     {
         return str_replace(' ', '', ucwords(str_replace(['_', '-'], ' ', $name)));
     }
@@ -69,18 +70,19 @@ class API
     /**
      * Global 'request' method to the Zenkit API endpoint.
      *
-     * @param string $uri
+     * @param string      $uri
      * @param string|null $method
-     * @param array|null $parameters
+     * @param array|null  $parameters
      * @return ResponseInterface
+     * @throws BadResponseException
      * @throws GuzzleException
      */
-    public function request(string $uri, string $method = null, array $parameters = null): ResponseInterface
+    public function request(string $uri, ?string $method = null, ?array $parameters = null): ResponseInterface
     {
         $response = $this->client->request($method ?: 'get', $uri, (array)$parameters);
         $responseStatus = $response->getStatusCode();
 
-        if ($responseStatus < 200 || $responseStatus > 299) {
+        if ($responseStatus < 200 || $responseStatus >= 300) {
             $exception = new BadResponseException(
                 'The request did not answer with a 2xx status code (' . $responseStatus . ').',
                 $responseStatus
@@ -93,51 +95,51 @@ class API
     }
 
     /**
-     * @param bool|null $raw
+     * @param bool|null            $raw
      * @param LoggerInterface|null $logger
      * @return ElementService
      */
-    public function getElementService(bool $raw = null, LoggerInterface $logger = null): ElementService
+    public function getElementService(?bool $raw = null, ?LoggerInterface $logger = null): ElementService
     {
         return new ElementService($this, (bool)$raw, $logger);
     }
 
     /**
-     * @param bool|null $raw
+     * @param bool|null            $raw
      * @param LoggerInterface|null $logger
      * @return EntryService
      */
-    public function getEntryService(bool $raw = null, LoggerInterface $logger = null): EntryService
+    public function getEntryService(?bool $raw = null, ?LoggerInterface $logger = null): EntryService
     {
         return new EntryService($this, (bool)$raw, $logger);
     }
 
     /**
-     * @param bool|null $raw
+     * @param bool|null            $raw
      * @param LoggerInterface|null $logger
      * @return ListService
      */
-    public function getListService(bool $raw = null, LoggerInterface $logger = null): ListService
+    public function getListService(?bool $raw = null, ?LoggerInterface $logger = null): ListService
     {
         return new ListService($this, (bool)$raw, $logger);
     }
 
     /**
-     * @param bool|null $raw
+     * @param bool|null            $raw
      * @param LoggerInterface|null $logger
      * @return UserService
      */
-    public function getUserService(bool $raw = null, LoggerInterface $logger = null): UserService
+    public function getUserService(?bool $raw = null, ?LoggerInterface $logger = null): UserService
     {
         return new UserService($this, (bool)$raw, $logger);
     }
 
     /**
-     * @param bool|null $raw
+     * @param bool|null            $raw
      * @param LoggerInterface|null $logger
      * @return WorkspaceService
      */
-    public function getWorkspaceService(bool $raw = null, LoggerInterface $logger = null): WorkspaceService
+    public function getWorkspaceService(?bool $raw = null, ?LoggerInterface $logger = null): WorkspaceService
     {
         return new WorkspaceService($this, (bool)$raw, $logger);
     }
