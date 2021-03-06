@@ -11,6 +11,7 @@ use JsonMapper_Exception;
 
 /**
  * Class WorkspaceService
+ *
  * @package idoit\zenkit\Workspaces
  */
 class WorkspaceService extends AbstractService
@@ -36,9 +37,10 @@ class WorkspaceService extends AbstractService
     }
 
     /**
+     * @return void
      * @todo
      */
-    private function getUpdatedAtOfResources()
+    private function getUpdatedAtOfResources(): void
     {
     }
 
@@ -81,23 +83,26 @@ class WorkspaceService extends AbstractService
     }
 
     /**
+     * @return void
      * @todo
      */
-    private function createWorkspace()
+    private function createWorkspace(): void
     {
     }
 
     /**
+     * @return void
      * @todo
      */
-    private function updateWorkspaceDetails()
+    private function updateWorkspaceDetails(): void
     {
     }
 
     /**
+     * @return void
      * @todo
      */
-    private function deprecateWorkspace()
+    private function deprecateWorkspace(): void
     {
     }
 }

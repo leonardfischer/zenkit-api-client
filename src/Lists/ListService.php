@@ -10,6 +10,7 @@ use JsonMapper_Exception;
 
 /**
  * Class ListService
+ *
  * @package idoit\zenkit\Lists
  */
 class ListService extends AbstractService
@@ -35,20 +36,6 @@ class ListService extends AbstractService
     }
 
     /**
-     * @todo
-     */
-    private function getUpdatedAtOfResources()
-    {
-    }
-
-    /**
-     * @todo
-     */
-    private function getUsersForList()
-    {
-    }
-
-    /**
      * @return ListItem[]
      * @throws BadResponseException
      * @throws GuzzleException
@@ -68,23 +55,42 @@ class ListService extends AbstractService
     }
 
     /**
+     * @return void
      * @todo
      */
-    private function setMostRecentList()
+    private function getUpdatedAtOfResources(): void
     {
     }
 
     /**
+     * @return void
      * @todo
      */
-    private function editListProperties()
+    private function getUsersForList(): void
     {
     }
 
     /**
+     * @return void
      * @todo
      */
-    private function deprecateList()
+    private function setMostRecentList(): void
+    {
+    }
+
+    /**
+     * @return void
+     * @todo
+     */
+    private function editListProperties(): void
+    {
+    }
+
+    /**
+     * @return void
+     * @todo
+     */
+    private function deprecateList(): void
     {
     }
 }

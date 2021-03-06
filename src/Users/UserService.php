@@ -9,6 +9,7 @@ use JsonMapper_Exception;
 
 /**
  * Class UserService
+ *
  * @package idoit\zenkit\Users
  */
 class UserService extends AbstractService
