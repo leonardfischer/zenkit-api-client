@@ -2,10 +2,12 @@
 
 namespace idoit\zenkit\DataTypes;
 
+use DateTime;
 use idoit\zenkit\AbstractDataType;
 
 /**
  * Class FileItem
+ *
  * @package idoit\zenkit\DataTypes
  */
 class FileItem extends AbstractDataType
@@ -71,17 +73,17 @@ class FileItem extends AbstractDataType
     public $height;
 
     /**
-     * @var \DateTime
+     * @var DateTime
      */
     public $created_at;
 
     /**
-     * @var \DateTime
+     * @var DateTime
      */
     public $updated_at;
 
     /**
-     * @var null|\DateTime
+     * @var null|DateTime
      */
     public $deprecated_at;
 

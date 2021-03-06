@@ -2,10 +2,12 @@
 
 namespace idoit\zenkit\DataTypes;
 
+use DateTime;
 use idoit\zenkit\AbstractDataType;
 
 /**
  * Class ListItem
+ *
  * @package idoit\zenkit\DataTypes
  */
 class ListItem extends AbstractDataType
@@ -81,32 +83,32 @@ class ListItem extends AbstractDataType
     public $defaultViewModus;
 
     /**
-     * @var \DateTime
+     * @var DateTime
      */
     public $created_at;
 
     /**
-     * @var \DateTime
+     * @var DateTime
      */
     public $updated_at;
 
     /**
-     * @var null|\DateTime
+     * @var null|DateTime
      */
     public $deprecated_at;
 
     /**
-     * @var \DateTime
+     * @var DateTime
      */
     public $origin_created_at;
 
     /**
-     * @var null|\DateTime
+     * @var null|DateTime
      */
     public $origin_updated_at;
 
     /**
-     * @var null|\DateTime
+     * @var null|DateTime
      */
     public $origin_deprecated_at;
 

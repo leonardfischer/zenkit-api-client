@@ -6,6 +6,7 @@ use idoit\zenkit\AbstractDataType;
 
 /**
  * Class UserItem
+ *
  * @package idoit\zenkit\DataTypes
  */
 class UserItem extends AbstractDataType
@@ -96,7 +97,7 @@ class UserItem extends AbstractDataType
     public $isImagePreferred;
 
     /**
-     * @var null|\idoit\zenkit\DataTypes\EmailItem[]
+     * @var null|EmailItem[]
      */
     public $emails;
 }

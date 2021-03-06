@@ -6,6 +6,7 @@ use idoit\zenkit\AbstractDataType;
 
 /**
  * Class EmailItem
+ *
  * @package idoit\zenkit\DataTypes
  */
 class EmailItem extends AbstractDataType

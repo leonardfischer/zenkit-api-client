@@ -8,6 +8,7 @@ use JsonMapper_Exception;
 
 /**
  * Class WorkspaceItem
+ *
  * @package idoit\zenkit\DataTypes
  */
 class WorkspaceItem extends AbstractDataType
@@ -76,9 +77,10 @@ class WorkspaceItem extends AbstractDataType
      * This method gets called by the JsonMapper in order to fill 'lists'.
      *
      * @param array $lists
+     * @return void
      * @throws JsonMapper_Exception
      */
-    public function setLists(array $lists)
+    public function setLists(array $lists): void
     {
         $this->lists = (new JsonMapper())->mapArray($lists, [], ListItem::class);
     }
