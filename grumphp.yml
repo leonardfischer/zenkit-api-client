@@ -1,0 +1,20 @@
+grumphp:
+  process_timeout: 30
+  parallel:
+    enabled: true
+    max_workers: 4
+  tasks:
+    git_blacklist:
+      keywords:
+        - "die("
+        - "var_dump("
+        - "print_f("
+        - "dump("
+        - "dd("
+        - "exit;"
+      triggered_by: [ "php" ]
+    phpcsfixer:
+      config: .php_cs
+      triggered_by: [ 'php' ]
+    psalm:
+      show_info: false
