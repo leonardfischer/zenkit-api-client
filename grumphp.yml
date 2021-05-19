@@ -14,7 +14,7 @@ grumphp:
         - "exit;"
       triggered_by: [ "php" ]
     phpcsfixer:
-      config: .php_cs
+      config: .php-cs-fixer.php
       triggered_by: [ 'php' ]
     psalm:
       show_info: false
